@@ -1,0 +1,314 @@
+<!DOCTYPE html>
+<html lang="fr"><head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="robots" content="noindex,nofollow">
+<title>Questionnaires DPL — Les Makaras</title>
+<style>
+:root{
+  --bg:#f5f7f6; --surface:#ffffff; --surface-2:#fbfcfb;
+  --ink:#3a403b; --ink-soft:#7c847d; --line:#e7ebe8;
+  --accent:#86b6a0; --accent-d:#5e9580; --accent-soft:#e6f1ec;
+  --warn:#c08a6a; --warn-soft:#f8efe7; --warn-line:#e6c8b1; --warn-ink:#8a5b3c;
+  --radius:14px; --maxw:720px;
+}
+*{box-sizing:border-box}
+html{-webkit-text-size-adjust:100%}
+body{margin:0;background:var(--bg);color:var(--ink);
+  font-family:system-ui,-apple-system,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;
+  font-size:17px;line-height:1.65;}
+.topbar{position:sticky;top:0;z-index:30;background:rgba(251,252,251,.9);
+  backdrop-filter:blur(8px);border-bottom:1px solid var(--line);}
+.topbar-in{max-width:1080px;margin:0 auto;padding:13px 22px;
+  font-size:12.5px;letter-spacing:.06em;color:var(--ink-soft);font-weight:600;text-transform:uppercase;}
+.wrap{max-width:var(--maxw);margin:0 auto;padding:34px 22px 140px;}
+.layout{max-width:1080px;margin:0 auto;padding:26px 22px 150px;display:grid;
+  grid-template-columns:248px 1fr;gap:30px;align-items:start;}
+@media(max-width:860px){.layout{grid-template-columns:1fr;gap:18px;padding-top:18px;}}
+h1{font-size:31px;line-height:1.18;margin:0 0 8px;font-weight:650;letter-spacing:-.015em;}
+h2{font-size:22px;margin:0 0 6px;font-weight:650;letter-spacing:-.01em;}
+.lede{color:var(--ink-soft);margin:0 0 22px;font-size:18px;}
+p{margin:0 0 14px;} .muted{color:var(--ink-soft);font-size:14.5px;}
+.card{background:var(--surface);border:1px solid var(--line);border-radius:var(--radius);padding:24px;margin:0 0 18px;}
+.note{background:var(--accent-soft);border-radius:12px;padding:15px 18px;color:#4a6a5c;font-size:15px;margin:0 0 16px;}
+.note ul{margin:8px 0 0;padding-left:20px;} .note li{margin:3px 0;}
+.vigil{background:var(--warn-soft);border:1px solid var(--warn-line);border-radius:12px;
+  padding:15px 18px;color:var(--warn-ink);font-size:15px;margin:0 0 20px;}
+.vigil strong{color:#7a4d30;}
+.vigil .vh{display:flex;align-items:center;gap:9px;font-weight:700;margin:0 0 7px;}
+.qcards{display:flex;flex-direction:column;gap:12px;margin:6px 0 18px;}
+.qcard{display:flex;gap:15px;align-items:flex-start;border:1px solid var(--line);
+  border-radius:13px;padding:15px 17px;background:var(--surface);}
+.qcard .badge{flex:none;width:42px;height:42px;border-radius:11px;display:flex;
+  align-items:center;justify-content:center;font-weight:700;font-size:14px;color:#3a403b;}
+.qcard .ct{flex:1;} .qcard .ct .nm{font-weight:650;margin:0 0 2px;}
+.qcard .ct .ds{color:var(--ink-soft);font-size:15px;margin:0;}
+.qcard .cnt{flex:none;color:var(--ink-soft);font-size:13px;white-space:nowrap;padding-top:3px;}
+.field{margin:0 0 16px;} .field label{display:block;font-weight:600;margin:0 0 6px;font-size:15px;}
+.field input{width:100%;font:inherit;padding:12px 14px;border:1px solid var(--line);
+  border-radius:11px;background:var(--surface);color:var(--ink);}
+.field input:focus{outline:2px solid var(--accent);outline-offset:1px;border-color:var(--accent);}
+.row2{display:grid;grid-template-columns:1fr 1fr;gap:14px;}
+@media(max-width:560px){.row2{grid-template-columns:1fr}}
+.side{position:sticky;top:74px;}
+@media(max-width:860px){.side{position:static;}}
+.side .ttl{font-size:12px;letter-spacing:.06em;text-transform:uppercase;color:var(--ink-soft);font-weight:700;margin:0 0 10px;padding-left:4px;}
+.side .ov{font-size:13.5px;color:var(--ink-soft);margin:0 0 14px;padding-left:4px;}
+.snav{display:flex;flex-direction:column;gap:8px;}
+@media(max-width:860px){.snav{flex-direction:row;overflow-x:auto;padding-bottom:6px;-webkit-overflow-scrolling:touch;}}
+.snav button{display:flex;align-items:center;gap:11px;text-align:left;width:100%;
+  border:1px solid var(--line);background:var(--surface);border-radius:12px;padding:11px 13px;cursor:pointer;color:var(--ink);transition:border-color .12s,background .12s;}
+@media(max-width:860px){.snav button{width:auto;white-space:nowrap;flex:none;}}
+.snav button:hover{background:var(--surface-2);}
+.snav button.active{border-color:var(--accent);background:var(--accent-soft);}
+.snav .sdot{flex:none;width:26px;height:26px;border-radius:8px;display:flex;align-items:center;justify-content:center;font-size:12px;font-weight:700;color:#3a403b;}
+.snav .sinfo{display:flex;flex-direction:column;line-height:1.25;}
+.snav .sn{font-weight:600;font-size:14.5px;} .snav .sp{font-size:12px;color:var(--ink-soft);}
+.snav .sp.done{color:var(--accent-d);font-weight:600;}
+.qhead .insn{background:var(--surface-2);border:1px solid var(--line);border-radius:12px;padding:14px 16px;color:var(--ink-soft);font-size:15px;margin:8px 0 18px;}
+.q{padding:18px 0;border-top:1px solid var(--line);}
+.q:first-of-type{border-top:none;}
+.q.miss{background:var(--warn-soft);border-radius:12px;padding:18px 16px;margin:0 -16px;border-top:none;}
+.qrow{display:flex;gap:11px;align-items:flex-start;margin:0 0 13px;}
+.qn{flex:none;width:30px;height:30px;border-radius:8px;background:var(--surface-2);border:1px solid var(--line);color:var(--ink-soft);font-weight:700;font-size:13px;display:flex;align-items:center;justify-content:center;}
+.qx{flex:1;padding-top:3px;}
+.cbtn{flex:none;width:34px;height:34px;border-radius:9px;border:1px solid var(--line);background:var(--surface);
+  cursor:pointer;display:flex;align-items:center;justify-content:center;color:var(--ink-soft);transition:.12s;}
+.cbtn:hover{background:var(--surface-2);border-color:var(--accent);color:var(--accent-d);}
+.cbtn.has{background:var(--accent-soft);border-color:var(--accent);color:var(--accent-d);}
+.cbtn svg{width:17px;height:17px;}
+.opts{display:flex;flex-direction:column;gap:8px;margin-left:41px;}
+.opt{display:flex;align-items:center;gap:12px;min-height:46px;padding:9px 15px;border:1px solid var(--line);border-radius:11px;background:var(--surface);cursor:pointer;transition:background .12s,border-color .12s;font-size:15.5px;position:relative;}
+.opt:hover{background:var(--surface-2);}
+.opt .dot{flex:none;width:20px;height:20px;border-radius:50%;border:2px solid #c6cdc7;transition:.12s;}
+.opt.sel{background:var(--accent-soft);border-color:var(--accent);}
+.opt.sel .dot{border-color:var(--accent-d);background:radial-gradient(circle at center,var(--accent-d) 0 6px,transparent 7px);}
+.opt input{position:absolute;opacity:0;width:0;height:0;}
+.opt:focus-within{outline:2px solid var(--accent);outline-offset:2px;}
+.actions{display:flex;justify-content:flex-end;gap:12px;align-items:center;margin-top:26px;flex-wrap:wrap;}
+button.btn{font:inherit;border:1px solid var(--accent);background:var(--accent);color:#fff;font-weight:600;padding:13px 26px;border-radius:99px;cursor:pointer;transition:background .12s,border-color .12s;}
+button.btn:hover{background:var(--accent-d);border-color:var(--accent-d);}
+button.btn.ghost{background:transparent;color:var(--accent-d);}
+button.btn.ghost:hover{background:var(--accent-soft);}
+button.btn:focus-visible{outline:2px solid var(--accent-d);outline-offset:2px;}
+.cta-full{width:100%;justify-content:center;}
+.banner{background:var(--warn-soft);border:1px solid var(--warn-line);color:var(--warn-ink);border-radius:12px;padding:13px 17px;margin:0 0 18px;font-size:15px;}
+.code{width:100%;font-family:ui-monospace,Menlo,Consolas,monospace;font-size:12.5px;padding:13px;border:1px solid var(--line);border-radius:11px;background:var(--surface-2);color:var(--ink-soft);min-height:110px;word-break:break-all;resize:vertical;}
+a{color:var(--accent-d);} .center{text-align:center;}
+.bigcheck{width:74px;height:74px;border-radius:50%;background:var(--accent-soft);margin:8px auto 18px;display:flex;align-items:center;justify-content:center;}
+.bigcheck svg{width:36px;height:36px;}
+/* comment popover */
+.cback{position:fixed;inset:0;z-index:40;background:transparent;}
+.cpop{position:fixed;z-index:41;width:320px;max-width:calc(100vw - 24px);background:var(--surface);
+  border:1px solid var(--accent);border-radius:14px;box-shadow:0 12px 34px rgba(58,64,59,.18);padding:15px;}
+.cpop .ch{font-size:13px;font-weight:700;color:var(--ink-soft);margin:0 0 8px;}
+.cpop textarea{width:100%;font:inherit;font-size:15px;min-height:90px;padding:10px 12px;border:1px solid var(--line);border-radius:10px;resize:vertical;color:var(--ink);}
+.cpop textarea:focus{outline:2px solid var(--accent);outline-offset:1px;border-color:var(--accent);}
+.cpop .cf{display:flex;justify-content:flex-end;margin-top:10px;}
+.cpop .cf button{font:inherit;border:none;background:var(--accent);color:#fff;font-weight:600;padding:8px 18px;border-radius:99px;cursor:pointer;}
+@media(max-width:620px){.cpop{left:12px!important;right:12px!important;width:auto!important;top:auto!important;bottom:12px!important;}}
+/* modal */
+.modal-back{position:fixed;inset:0;z-index:50;background:rgba(45,52,47,.34);display:flex;align-items:center;justify-content:center;padding:18px;}
+.modal{background:var(--surface);border-radius:16px;max-width:440px;width:100%;padding:26px;box-shadow:0 18px 48px rgba(45,52,47,.22);}
+.modal h2{margin:0 0 8px;} .modal p{color:var(--ink-soft);font-size:15.5px;}
+.modal .mf{display:flex;gap:10px;flex-wrap:wrap;justify-content:flex-end;margin-top:18px;}
+@media (prefers-reduced-motion:reduce){*{transition:none!important}}
+</style></head><body>
+<div class="topbar"><div class="topbar-in">DPL · Les Makaras — Unité Mobile Autisme Adulte</div></div>
+<main id="app"></main>
+<script>
+const Q = [{"id": "RAADS", "title": "Questionnaire 1 — RAADS-R", "short": "RAADS-R", "subtitle": "Votre façon de penser et de réagir, de l'enfance à aujourd'hui", "desc": "Votre façon de penser et de réagir dans différentes situations, depuis l'enfance jusqu'à aujourd'hui.", "color": "#E2F0E8", "instruction": "Pour chaque phrase, cochez une seule réponse, celle qui vous correspond le mieux. Répondez selon votre propre opinion, sans penser à ce que les autres attendraient de vous.", "opts": ["Vrai maintenant et quand j'avais moins de 16 ans", "Vrai seulement maintenant", "Vrai seulement quand j'avais moins de 16 ans", "Jamais vrai"], "items": [{"n": 1, "text": "Je suis une personne compatissante"}, {"n": 2, "text": "J'utilise souvent des mots et des phrases entendus dans des films ou à la télévision dans les conversations"}, {"n": 3, "text": "Je suis souvent surpris lorsque les autres me disent que j'ai été impoli."}, {"n": 4, "text": "Parfois, je parle trop fort ou trop doucement et je ne m'en aperçois pas."}, {"n": 5, "text": "J'ai souvent des difficultés à savoir comment me comporter en société."}, {"n": 6, "text": "Je peux \"me mettre dans la peau de quelqu'un d'autre\"."}, {"n": 7, "text": "J'ai du mal à comprendre le sens de certaines phrases comme \"je tiens à toi comme à la prunelle de mes yeux\"."}, {"n": 8, "text": "J'aime seulement parler aux gens qui partagent mes centres d'intérêt."}, {"n": 9, "text": "Je fais plus attention aux détails qu'à l'idée générale."}, {"n": 10, "text": "Je suis sensible à l'effet produit par un aliment dans ma bouche. Ceci est plus important que son goût."}, {"n": 11, "text": "Mes meilleurs amis ou ma famille me manquent quand nous sommes séparés depuis longtemps."}, {"n": 12, "text": "Quelquefois, je vexe les autres en disant ce que je pense, sans le faire exprès."}, {"n": 13, "text": "J'aime seulement penser et parler des choses qui m'intéressent."}, {"n": 14, "text": "Je préfère aller manger dans un restaurant tout seul plutôt qu'avec quelqu'un que je connais."}, {"n": 15, "text": "Je n'arrive pas à imaginer comment ce serait d'être quelqu'un d'autre."}, {"n": 16, "text": "On m'a déjà dit que j'étais maladroit ou que je manquais de coordination."}, {"n": 17, "text": "Les autres me trouvent étrange ou différent."}, {"n": 18, "text": "Je comprends lorsque des amis ont besoin d'être réconfortés."}, {"n": 19, "text": "Je suis très sensible au contact de mes vêtements lorsque je les touche. Leur texture est plus importante pour moi que leur look."}, {"n": 20, "text": "J'aime copier la manière dont certaines personnes parlent et agissent. Cela m'aide à me sentir plus normal."}, {"n": 21, "text": "Cela peut être très intimidant pour moi de parler à plus d'une personne en même temps."}, {"n": 22, "text": "Je dois adopter un comportement \"normal\" pour plaire aux autres et pour qu'ils m'apprécient."}, {"n": 23, "text": "Rencontrer de nouvelles personnes est habituellement facile pour moi."}, {"n": 24, "text": "Je suis déstabilisé lorsque quelqu'un m'interrompt alors que je parle de quelque chose qui m'intéresse beaucoup."}, {"n": 25, "text": "Il m'est difficile de percevoir les sentiments des autres lors d'une conversation."}, {"n": 26, "text": "J'aime avoir une conversation avec plusieurs personnes, par exemple lors d'un dîner, à l'école ou au travail."}, {"n": 27, "text": "Je prends les choses trop au premier degré, ainsi je passe à côté de ce que les gens essaient de me dire."}, {"n": 28, "text": "C'est très difficile pour moi de comprendre lorsque quelqu'un est gêné ou jaloux."}, {"n": 29, "text": "Certaines textures ordinaires qui ne posent aucun problème aux autres sont pour moi insupportables lorsqu'elles sont au contact de ma peau."}, {"n": 30, "text": "Je suis très contrarié lorsqu'on m'empêche de faire les choses à ma façon."}, {"n": 31, "text": "Je n'ai jamais désiré ou eu besoin de ce que les autres personnes appellent une \"relation intime\"."}, {"n": 32, "text": "C'est difficile pour moi de commencer et d'arrêter une conversation. J'ai besoin d'aller jusqu'au bout de mon propos."}, {"n": 33, "text": "Je parle avec un rythme de voix normal."}, {"n": 34, "text": "Je peux sans transition être très sensible ou pas du tout sensible au même son, à la même couleur ou à la même texture."}, {"n": 35, "text": "La phrase \"je t'ai dans la peau\" me met mal à l'aise."}, {"n": 36, "text": "Quelquefois, la sonorité d'un mot ou un bruit aigu peut me faire mal aux oreilles."}, {"n": 37, "text": "On me considère comme une personne très compréhensive."}, {"n": 38, "text": "Je ne peux pas m'identifier à un personnage dans un film, et je ne peux pas ressentir ce qu'il ressent."}, {"n": 39, "text": "Je ne peux pas dire si quelqu'un est en train de me draguer."}, {"n": 40, "text": "Je peux me représenter avec précisions les détails qui m'intéressent."}, {"n": 41, "text": "Je fais des listes de choses qui m'intéressent, même si elles n'ont pas d'utilité pratique (par exemple statistiques sportives, horaires de train, dates du calendrier, faits historiques, etc.)"}, {"n": 42, "text": "Quand je me sens dépassé par des stimulations sensorielles, je dois m'isoler pour y échapper."}, {"n": 43, "text": "J'aime parler de choses et d'autres avec mes amis."}, {"n": 44, "text": "Je ne peux pas dire si quelqu'un est intéressé ou ennuyé par ce que je dis."}, {"n": 45, "text": "Lorsque quelqu'un est en train de parler, il peut m'être très difficile de lire sur son visage, de comprendre les mouvements de ses mains ou de son corps."}, {"n": 46, "text": "Je peux ressentir à différents moments la même chose très différemment (comme des vêtements ou la température)."}, {"n": 47, "text": "Je me sens très à l'aise lors d'un rendez-vous amoureux ou lorsque je me trouve en société."}, {"n": 48, "text": "J'essaie d'être aussi aidant que possible lorsque les autres me parlent de leurs problèmes personnels."}, {"n": 49, "text": "On m'a dit que j'avais une voix particulière (par exemple plate, monotone, enfantine ou aigüe)"}, {"n": 50, "text": "Quelquefois une idée ou un sujet reste bloqué dans mon esprit et je dois en parler, même si cela n'intéresse personne."}, {"n": 51, "text": "Je fais certaines choses avec mes mains de façon répétée (comme un battement d'ailes, faire tournoyer un bâton ou une ficelle, agiter des choses devant mes yeux)."}, {"n": 52, "text": "Je n'ai jamais été intéressé par ce que la plupart des gens que je connais considèrent comme intéressant."}, {"n": 53, "text": "On me considère comme une personne compatissante."}, {"n": 54, "text": "Pour m'entendre avec les autres, je suis un ensemble de règles spécifiques qui m'aident à paraître normal."}, {"n": 55, "text": "C'est très difficile pour moi de travailler et d'évoluer dans un groupe."}, {"n": 56, "text": "Lorsque je parle à quelqu'un, il m'est difficile de changer de sujet. Si l'autre personne le fait, je peux être bouleversé et confus."}, {"n": 57, "text": "Quelquefois, je dois couvrir mes oreilles pour arrêter les bruits douloureux (comme un aspirateur ou des gens qui parlent trop ou trop fort)."}, {"n": 58, "text": "Je peux discuter et avoir des conversations superficielles."}, {"n": 59, "text": "Quelquefois, des choses qui devraient être douloureuses ne me font pas mal (par exemple, lorsque je me blesse ou lorsque je me brûle la main sur un poêle)."}, {"n": 60, "text": "Quand je parle à quelqu'un, j'ai des difficultés à savoir si c'est mon tour de parler ou d'écouter."}, {"n": 61, "text": "Je suis considéré comme un solitaire par ceux qui me connaissent le mieux."}, {"n": 62, "text": "Je parle habituellement avec un ton de voix normal."}, {"n": 63, "text": "J'aime que les choses se déroulent toujours de la même manière, jour après jour, et même les petits changements dans mes routines me perturbent."}, {"n": 64, "text": "Comment se faire des amis et s'intégrer socialement est un mystère pour moi."}, {"n": 65, "text": "Cela me calme de tourner en rond ou de me balancer sur une chaise lorsque je me sens stressé."}, {"n": 66, "text": "La phrase \" il a le cœur sur la main\" n'a pas de sens pour moi."}, {"n": 67, "text": "Si je suis dans un endroit où il y a beaucoup d'odeurs, de matières à toucher, de bruits ou de lumières intenses, je me sens anxieux ou effrayé."}, {"n": 68, "text": "Je sais faire la différence lorsque quelqu'un dit une chose mais veut en dire une autre."}, {"n": 69, "text": "J'aime être seul autant que possible."}, {"n": 70, "text": "Je garde mes pensées empilées dans ma mémoire comme dans un classeur et je prends celles dont j'ai besoin en sélectionnant dans la pile (ou avec une méthode similaire)."}, {"n": 71, "text": "Le même son peut paraître quelquefois très fort ou très doux alors que je sais qu'il n'a pas changé."}, {"n": 72, "text": "J'aime passer du temps à manger et parler avec ma famille et mes amis."}, {"n": 73, "text": "Je ne supporte pas les choses que je n'aime pas (comme des odeurs, des matières, des sons ou des couleurs)."}, {"n": 74, "text": "Je n'aime pas être tenu ou étreint."}, {"n": 75, "text": "Lorsque je vais quelque part, je dois suivre un parcours familier sinon je peux devenir très confus et perturbé."}, {"n": 76, "text": "C'est difficile de comprendre ce que les autres personnes attendent de moi."}, {"n": 77, "text": "J'aime avoir des amis proches."}, {"n": 78, "text": "On me dit que je donne trop de détails."}, {"n": 79, "text": "On me dit souvent que je pose des questions embarrassantes."}, {"n": 80, "text": "J'ai tendance à souligner les erreurs des autres."}]}, {"id": "SQ", "title": "Questionnaire 2 — SQ-R", "short": "SQ-R", "subtitle": "Votre intérêt pour les systèmes, les règles et l'organisation", "desc": "Votre attrait pour les systèmes, les règles ou les activités organisées.", "color": "#E1ECF5", "instruction": "Lisez chaque affirmation et cochez la case correspondant le mieux à votre degré d'accord.", "opts": ["Tout à fait d'accord", "Plutôt d'accord", "Plutôt pas d'accord", "Pas du tout d'accord"], "items": [{"n": 1, "text": "Je trouve cela très facile d’utiliser les tableaux horaires des trains même s’ils impliquent plusieurs correspondances."}, {"n": 2, "text": "J’aime les magasins de musique ou les librairies parce qu’ils sont clairement organisés."}, {"n": 3, "text": "Je n’aimerais pas organiser des événements comme des soirées de collecte, des fêtes, des conférences, …"}, {"n": 4, "text": "Quand je lis quelque chose, je remarque toujours si c’est grammaticalement correct."}, {"n": 5, "text": "Je me surprends à classer mentalement les gens en différents types."}, {"n": 6, "text": "Je trouve cela difficile de lire et de comprendre les cartes."}, {"n": 7, "text": "Quand je regarde une montagne, je pense à la manière précise dont elle s’est formée."}, {"n": 8, "text": "Je ne suis pas intéressé(e) par le détails des taux de change, des taux d’intérêt et des valeurs boursières."}, {"n": 9, "text": "Si j’achetais une voiture, je souhaiterais obtenir des informations spécifiques sur la capacité de son moteur."}, {"n": 10, "text": "Je trouve cela difficile d’apprendre comment on programme un magnétoscope."}, {"n": 11, "text": "Quand j’apprécie quelque chose, j’aime collectionner beaucoup d’exemples différents de chaque type d’objet afin de pouvoir observer ce en quoi ils diffèrent les uns des autres."}, {"n": 12, "text": "Quand j’apprends une langue, je suis intrigué(e) par ses règles grammaticales."}, {"n": 13, "text": "J’aime savoir comment les comités sont structurés : qui les différents membres du comité représentent ou quelles fonctions ils occupent."}, {"n": 14, "text": "Si j’avais une collection (par exemple, de CD, de timbres, de pièces de monnaies, …), elle serait extrêmement organisée."}, {"n": 15, "text": "Je trouve qu’il est difficile de comprendre les manuels d’instructions permettant d’assembler des appareils."}, {"n": 16, "text": "Quand je regarde un bâtiment, je suis curieux(se) de savoir de quelle manière précise il a été construit."}, {"n": 17, "text": "Je ne suis pas intéressé(e) par la compréhension du fonctionnement des réseaux de communication sans fil (ex : téléphonie mobile)."}, {"n": 18, "text": "Quand je voyage en train, je me demande souvent comment le réseau des chemins de fer est précisément coordonné."}, {"n": 19, "text": "J’aime consulter les catalogues de produits afin de voir le détail de chaque produit et de voir comment il se distingue des autres."}, {"n": 20, "text": "Quand il me manque quelque chose à la maison, je l’ajoute toujours à ma liste de courses."}, {"n": 21, "text": "Je sais, avec une précision raisonable, quelle quantité d’argent entre et sort sur/de mon compte en banque ce mois."}, {"n": 22, "text": "Quand j’étais jeune, je ne prenais pas de plaisir à collectionner des séries de choses comme des stickers, des cartes de football, etc"}, {"n": 23, "text": "Je suis intéressé(e) par mon arbre généalogique et par le fait de comprendre comment chaque personne est reliée aux autres au sein de la famille."}, {"n": 24, "text": "Quand j’apprends des événements historiques, je ne me focalise pas sur les dates exactes."}, {"n": 25, "text": "Je trouve qu’il est facile de comprendre exactement comment dans les paris les cotes fonctionnent."}, {"n": 26, "text": "Je ne prends pas de plaisir dans les jeux qui requièrent un haut niveau de stratégie (par exemple les échecs, Risk, …)."}, {"n": 27, "text": "Quand j’apprends une nouvelle catégorie, j’aime aller dans les détails pour comprendre les petites différences entre les membres de cette catégorie."}, {"n": 28, "text": "Je ne trouve pas cela gênant quand quelqu’un qui vit avec moi perturbe mes habitudes."}, {"n": 29, "text": "Quand je regarde un animal, j’aime connaître l’espèce précise à laquelle il appartient."}, {"n": 30, "text": "Je peux me rappeler de grandes quantités d’informations à propos d’un sujet qui m’intéresse (par exemple, les drapeaux nationaux, les logos des compagnies aériennes)."}, {"n": 31, "text": "A la maison, je ne classe pas précautioneusement tous les documents importants (par exemple, les garanties, les polices d’assurance)."}, {"n": 32, "text": "Je suis fasciné(e) par la manière dont les machines fonctionnent."}, {"n": 33, "text": "Quand je regarde un meuble, je ne remarque pas les détails de sa réalisation."}, {"n": 34, "text": "Je connais très peu de choses sur les différentes étapes des procédures législatives de mon pays."}, {"n": 35, "text": "Je n’ai pas tendance à regarder des documentaires scientifiques à la télévision ou à lire des articles portant sur la science et la nature."}, {"n": 36, "text": "Si quelqu’un m’arrêtait pour me demander le chemin, je serais capable de lui indiquer la direction vers n’importe quelle partie de la ville dans laquelle je vis."}, {"n": 37, "text": "Quand je regarde un tableau, je ne pense habituellement pas à la technique employée pour le réaliser."}, {"n": 38, "text": "Je préfère les interactions sociales qui sont organisées autour d’une activité précise (par exemple, un hobby)."}, {"n": 39, "text": "Je ne vérifie pas toujours que mes tickets de frais correspondent à mes relevés de compte bancaire."}, {"n": 40, "text": "Je ne suis pas intéressé(e) par la manière dont le gouvernement est organisé en terme des différents ministères et départements."}, {"n": 41, "text": "Cela m’intéresse de connaître le parcours d’une rivière, de sa source à la mer."}, {"n": 42, "text": "J’ai une vaste collection de livres, CD, vidéos, etc"}, {"n": 43, "text": "S’il y avait un problème avec l’installation électrique de ma maison, je serais capable de le règler moi-même."}, {"n": 44, "text": "Dans ma garde-robe, mes vêtements ne sont pas précautionneusement organisés en fonction de leurs différentes catégories d’appartenance."}, {"n": 45, "text": "Je lis rarement des articles ou des pages web sur des nouvelles technologies."}, {"n": 46, "text": "Je peux facilement visualiser la manière dont les autoroutes de ma région sont reliées les unes aux autres."}, {"n": 47, "text": "Quand une élection a lieu, je ne suis pas intéressé(e) par les résultats de chacun des partis."}, {"n": 48, "text": "Je ne prends pas particulièrement de plaisir à en apprendre sur les faits et les personnages historiques."}, {"n": 49, "text": "Je n’ai pas tendance à me souvenir des dates d’anniversaire des gens (en terme de jour et de mois)."}, {"n": 50, "text": "Quand je me balade à la campagne, je suis curieux(se) de savoir de quelle manière les variétés d’arbres diffèrent."}, {"n": 51, "text": "Je trouve difficile de comprendre les informations que la banque m’envoi sur les différents types d’investissement et sur les systèmes de protection."}, {"n": 52, "text": "Si j’achetais un appareil photo, je ne ferais pas particulièrement attention à la qualité de la lentille."}, {"n": 53, "text": "Si j’achetais un ordinateur, je voudrais connaître les détails exacts des capacités du disque dur et de la vitesse du processeur."}, {"n": 54, "text": "Je ne lis pas les documents légaux très attentivement."}, {"n": 55, "text": "Quand j’arrive à la caisse d’un supermarché, je range les différentes catégories de produits dans des sacs distincts."}, {"n": 56, "text": "Je ne suis pas une méthode particulière quand je nettoie ma maison."}, {"n": 57, "text": "Je ne prends pas de plaisir aux discussions politiques approfondies."}, {"n": 58, "text": "Je ne suis pas très méticuleux(se) lorsque j’effectue des travaux moi-même pour, par exemple, apporter des améliorations à ma maison."}, {"n": 59, "text": "Je ne prendrais pas de plaisir à monter une affaire du début à la fin."}, {"n": 60, "text": "Si j’achetais une chaîne stéréo, je voudrais connaître ses caractéristiques techniques spécifiques."}, {"n": 61, "text": "J’ai tendance à conserver des choses que d’autres pourraient jetter au cas où elles me seraient utiles dans l’avenir."}, {"n": 62, "text": "J’évite les situations que je ne peux pas contrôler."}, {"n": 63, "text": "Cela ne m’intéresse pas de connaître le nom des plantes que je vois."}, {"n": 64, "text": "Quand j’entends les prévisions météo, je ne suis pas très intéressé(e) par les aspects purement météorologiques."}, {"n": 65, "text": "Cela ne m’embête pas si les choses de ma maison ne sont pas à leur place."}, {"n": 66, "text": "En math, je suis intrigué(e) par les règles et les relations qui gouvernent les nombres."}, {"n": 67, "text": "Je trouve difficile de m’orienter dans une nouvelle ville."}, {"n": 68, "text": "Je pourrais faire la liste de mes 12 livres préférés, et me rappeler des titres et du nom des auteurs de mémoire."}, {"n": 69, "text": "Quand je lis le journal, je suis attiré(e) par les grilles d’informations comme les scores du football ou les indices de marché."}, {"n": 70, "text": "Quand je suis dans un avion, je ne pense pas aux lois de l’aérodynamique."}, {"n": 71, "text": "Je ne conserve pas avec soin les factures du ménage."}, {"n": 72, "text": "Quand j’ai pas mal de courses à faire, j’aime planifier les types de magasins dans lesquels je dois aller et l’ordre dans lequel je compte m’y rendre."}, {"n": 73, "text": "Quand je cuisine, je ne pense pas exactement à la manière dont les différents ingrédients et tâches contribuent au produit final."}, {"n": 74, "text": "Quand j’écoute un morceau de musique, je remarque toujours la manière dont il est structuré."}, {"n": 75, "text": "Je pourrais produire la liste de mes 12 chansons favorites de mémoire, en donnant le titre et le nom des artistes qui ont réalisé chaque chanson."}]}, {"id": "EQ", "title": "Questionnaire 3 — EQ", "short": "EQ", "subtitle": "Votre façon de percevoir et de comprendre les autres", "desc": "Vos facultés d'empathie et votre façon de percevoir les autres.", "color": "#F6E9DF", "instruction": "Lisez chaque affirmation et cochez la case correspondant le mieux à votre degré d'accord.", "opts": ["Tout à fait d'accord", "Plutôt d'accord", "Plutôt pas d'accord", "Pas du tout d'accord"], "items": [{"n": 1, "text": "Je peux facilement deviner quand quelqu’un veut entamer une conversation."}, {"n": 2, "text": "Je préfère les animaux aux êtres humains."}, {"n": 3, "text": "J’essaie d’être à la mode."}, {"n": 4, "text": "Je trouve difficile d’expliquer aux autres des choses que j’ai comprises facilement et que eux n’ont pas comprises du premier coup."}, {"n": 5, "text": "Je rêve la plupart des nuits."}, {"n": 6, "text": "J’aime prendre soin des autres."}, {"n": 7, "text": "J’essaie de résoudre mes problèmes moi-même plutôt que d’en discuter avec d’autres."}, {"n": 8, "text": "Je trouve difficile de savoir ce qu’il faut faire dans les relations sociales."}, {"n": 9, "text": "C’est le matin que je suis le(la) plus efficace."}, {"n": 10, "text": "On me dit souvent que je vais trop loin quand j’expose mon point de vue dans une discussion."}, {"n": 11, "text": "Cela ne m’ennuie pas trop d’être en retard à un rendez-vous fixé à un ami."}, {"n": 12, "text": "Les relations sociales sont si difficiles que j’essaie de ne pas m’en soucier."}, {"n": 13, "text": "Je ne ferais jamais rien d’illégal même si ce n’est pas très grave."}, {"n": 14, "text": "J’ai souvent du mal à juger si quelque chose est grossier ou familier."}, {"n": 15, "text": "Dans une conversation, j’ai tendance à me centrer sur mes propres pensées plutôt que sur celles de mon interlocuteur."}, {"n": 16, "text": "Je préfère les farces aux jeux de mots."}, {"n": 17, "text": "Je vis au jour le jour."}, {"n": 18, "text": "Quand j’étais enfant, j’aimais couper des vers de terre pour voir ce qui se passe."}, {"n": 19, "text": "Je détecte rapidement si quelqu’un dit une chose qui en signifie une autre."}, {"n": 20, "text": "J’ai de solides convictions sur la moralité."}, {"n": 21, "text": "Je ne comprends pas comment des choses vexent tant certaines personnes."}, {"n": 22, "text": "Il est pour moi facile de me mettre à la place de quelqu’un d’autre."}, {"n": 23, "text": "Je pense que les bonnes manières sont la meilleure chose que des parents peuvent apprendre à leurs enfants."}, {"n": 24, "text": "J’aime agir sur un coup de tête."}, {"n": 25, "text": "Je prédis assez bien le ressenti des autres."}, {"n": 26, "text": "Dans un groupe, je repère facilement quand quelqu’un se sent gêné ou mal à l’aise."}, {"n": 27, "text": "Si j’offense quelqu’un en parlant, j’estime que c’est son problème et pas le mien."}, {"n": 28, "text": "Si quelqu’un me demandait mon avis sur sa coupe de cheveux, je répondrais honnêtement même si elle ne me plaît pas."}, {"n": 29, "text": "Je ne comprends pas toujours pourquoi une personne peut être offensée par une remarque."}, {"n": 30, "text": "On me dit souvent que je suis imprévisible."}, {"n": 31, "text": "En groupe, j’aime être le centre d’intérêt."}, {"n": 32, "text": "Voir quelqu’un pleurer ne me touche pas vraiment."}, {"n": 33, "text": "J’adore parler politique."}, {"n": 34, "text": "Je ne mâche pas mes mots, ce qui est souvent pris pour de la grossièreté même si ce n’est pas mon intention."}, {"n": 35, "text": "En général, je comprends facilement les situations sociales."}, {"n": 36, "text": "On me dit généralement que je comprends bien les sentiments et les pensées des autres."}, {"n": 37, "text": "Quand je discute avec quelqu’un, j’essaie de parler de ses expériences plutôt que des miennes."}, {"n": 38, "text": "Ça me bouleverse de voir un animal souffrant."}, {"n": 39, "text": "Je suis capable de prendre des décisions sans être influencé(e) par les sentiments des autres."}, {"n": 40, "text": "Je ne peux pas me détendre sans avoir fait tout ce que j’avais planifié pour la journée."}, {"n": 41, "text": "Je remarque facilement si quelqu’un est intéressé ou ennuyé par ce que je dis."}, {"n": 42, "text": "Lorsque je regarde le journal télévisé, je suis triste de voir des personnes qui souffrent."}, {"n": 43, "text": "Mes amis me parlent généralement de leurs problèmes car ils disent que je suis très compréhensif(ve)."}, {"n": 44, "text": "Je peux sentir quand je dérange les autres, même s’ils ne me le disent pas."}, {"n": 45, "text": "Je commence souvent de nouveaux passe-temps qui m’ennuient vite et je passe à autre chose."}, {"n": 46, "text": "Des fois, on me dit que j’exagère quand je charrie les gens."}, {"n": 47, "text": "Je serais bien trop anxieux(se) de monter sur un manège de montagnes russes."}, {"n": 48, "text": "On me dit souvent que je suis insensible même si je ne vois pas toujours pourquoi."}, {"n": 49, "text": "Si je vois qu’il y a un nouveau venu dans un groupe de personnes, je crois que c’est à elles d’essayer de l’intégrer."}, {"n": 50, "text": "D’habitude, je ne m’implique pas émotionnellement lorsque je regarde un film."}, {"n": 51, "text": "J’aime être très organisé(e) dans ma vie de tous les jours, et je fais souvent des listes de ce que j’ai à faire."}, {"n": 52, "text": "Je peux me mettre à l’écoute du ressenti des autres rapidement et intuitivement."}, {"n": 53, "text": "Je n’aime pas prendre de risques."}, {"n": 54, "text": "Je peux facilement comprendre ce que quelqu’un veut dire."}, {"n": 55, "text": "Je peux deviner si quelqu’un masque ses émotions."}, {"n": 56, "text": "Je pèse toujours le pour et le contre avant de prendre une décision."}, {"n": 57, "text": "Je n’essaie pas de déchiffrer de façon consciente les règles en jeu dans les situations sociales."}, {"n": 58, "text": "Je suis bon(ne) pour prédire ce que quelqu’un va faire."}, {"n": 59, "text": "J’ai tendance à m’impliquer émotionnellement dans les problèmes de mes amis."}, {"n": 60, "text": "Habituellement, je comprends le point de vue des autres même si je ne le partage pas."}]}, {"id": "CATQ", "title": "Questionnaire 4 — CAT-Q", "short": "CAT-Q", "subtitle": "La manière dont vous vous adaptez dans les relations sociales", "desc": "La manière dont vous vous adaptez dans les relations sociales.", "color": "#EBE4F4", "instruction": "Pensez à ce que vous faites en général dans vos interactions sociales. « Compétences sociales » désigne les diverses façons d'interagir avec autrui.", "opts": ["Pas du tout d'accord", "Pas d'accord", "Plutôt pas d'accord", "Ni d'accord ni pas d'accord", "Plutôt d'accord", "D'accord", "Complètement d'accord"], "items": [{"n": 1, "text": "Quand j’interagis avec quelqu’un, je copie intentionnellement son langage corporel (ou ses expressions faciales)."}, {"n": 2, "text": "C’est en regardant la télévision ou des films, ou en lisant des romans que j’apprends comment les gens utilisent leurs corps et leurs visages pour interagir."}, {"n": 3, "text": "J’ai essayé d’améliorer ma compréhension des compétences sociales en observant les gens."}, {"n": 4, "text": "Je répète des phrases dites par d’autres personnes exactement de la même façon dont je les ai entendues pour la première fois."}, {"n": 5, "text": "Je m’entraîne afin que mes expressions faciales et mon langage corporel paraissent naturels."}, {"n": 6, "text": "J’ai passé du temps à apprendre des compétences sociales en regardant des émissions de télévision et des films et j’essaie de les utiliser dans mes interactions."}, {"n": 7, "text": "Dans mes interactions sociales, j’utilise des comportements que j’ai appris en regardant d’autres personnes interagir."}, {"n": 8, "text": "J’ai fait des recherches sur les règles des interactions sociales (par exemple, en étudiant la psychologie ou en lisant des livres sur le comportement humain) pour améliorer mes compétences sociales."}, {"n": 9, "text": "J’ai développé un script à suivre dans des situations sociales (par exemple, une liste de questions ou de sujets de conversation)."}, {"n": 10, "text": "Je fais attention à mon langage corporel ou mes expressions faciales pour avoir l’air plus détendu(e)."}, {"n": 11, "text": "J’ajuste mon langage corporel ou mes expressions faciales pour avoir l’air détendu(e)."}, {"n": 12, "text": "J’observe mon langage corporel ou mes expressions faciales afin d’avoir l’air intéressé(e) par la personne avec laquelle j’interagis."}, {"n": 13, "text": "J’ajuste mon langage corporel ou mes expressions faciales pour avoir l’air intéressé(e) par la personne avec laquelle j’interagis. naturels."}, {"n": 14, "text": "Je ne ressens pas le besoin de regarder les autres dans les yeux si je n’en ai pas envie."}, {"n": 15, "text": "Dans les interactions sociales, je ne suis pas conscient.e de ce que font mon visage et mon corps."}, {"n": 16, "text": "Je pense toujours à l’impression que je fais aux autres."}, {"n": 17, "text": "Je suis toujours conscient(e) de l’impression que je fais aux autres."}, {"n": 18, "text": "Je ressens rarement le besoin de jouer un rôle pour m’en sortir dans une situation sociale."}, {"n": 19, "text": "Quand je parle avec les autres, j’ai l’impression que la conversation se déroule naturellement."}, {"n": 20, "text": "Dans des situations sociales, j’essaie de trouver des moyens pour éviter d’interagir avec les autres."}, {"n": 21, "text": "Dans les situations sociales, j’ai l’impression que je dois jouer un rôle plutôt que d’être moi-même."}, {"n": 22, "text": "Dans les situations sociales, je dois me forcer à interagir avec les gens."}, {"n": 23, "text": "Dans les situations sociales, j’ai l’impression de faire semblant d’être «normal(e)»."}, {"n": 24, "text": "J’ai besoin du soutien d’autres personnes pour socialiser."}, {"n": 25, "text": "Je me sens libre d’être moi-même quand je suis avec d’autres personnes."}]}];
+const TOTAL = Q.reduce((s,q)=>s+q.items.length,0);
+let state={view:"welcome", qi:0, id:{nom:"",prenom:"",naissance:"",dateJour:""}, ans:{}, comments:{}};
+Q.forEach(q=>{state.ans[q.id]=new Array(q.items.length).fill(null);state.comments[q.id]=new Array(q.items.length).fill("");});
+
+const app=document.getElementById('app');
+function esc(s){return (''+s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;');}
+function answered(qid){return state.ans[qid].filter(v=>v!==null).length;}
+function isComplete(qid){return answered(qid)===state.ans[qid].length;}
+function totalAnswered(){let n=0;Q.forEach(q=>n+=answered(q.id));return n;}
+
+window.addEventListener('beforeunload',e=>{ if(state.view==="questionnaire"&&!state._sending&&totalAnswered()>0){e.preventDefault();e.returnValue="";} });
+
+function render(){window.scrollTo(0,0);closeComment();
+  if(state.view==="welcome")return renderWelcome();
+  if(state.view==="thanks")return renderThanks();
+  return renderQ();}
+
+function renderWelcome(){
+  let cards='';
+  Q.forEach(q=>{cards+=`<div class="qcard"><div class="badge" style="background:${q.color}">${q.short.replace('-','').slice(0,2).toUpperCase()}</div>
+    <div class="ct"><p class="nm">${esc(q.short)}</p><p class="ds">${esc(q.desc)}</p></div><div class="cnt">${q.items.length} questions</div></div>`;});
+  app.innerHTML=`<div class="wrap">
+    <h1>Questionnaires d'évaluation</h1>
+    <p class="lede">Dispositif de Première Ligne — Les Makaras, Unité Mobile Autisme Adulte</p>
+    <p>Ces questionnaires aident à mieux comprendre votre fonctionnement au quotidien et complètent les échanges que vous avez déjà eus avec votre médecin. Ils ne permettent pas, à eux seuls, de poser un diagnostic, mais les informations qu'ils apportent sont précieuses pour soutenir la réflexion.</p>
+    <div class="qcards">${cards}</div>
+    <div class="note"><strong>Comment répondre :</strong>
+      <ul>
+        <li>Une <strong>seule réponse</strong> est possible par question.</li>
+        <li>Merci de <strong>répondre à toutes les questions</strong> : il n'y a ni bonne ni mauvaise réponse, répondez avec sincérité.</li>
+        <li>Un <strong>encart commentaire</strong> est disponible à droite de chaque question si vous souhaitez ajouter une précision (facultatif).</li>
+      </ul></div>
+    <div class="vigil">
+      <div class="vh">⚠ Point de vigilance — à lire avant de commencer</div>
+      Vos réponses <strong>ne sont pas enregistrées sur un serveur</strong> : elles restent uniquement sur cet appareil pendant que vous remplissez. Une fois commencé, <strong>il faut terminer en une seule fois</strong> — il n'est pas possible de sauvegarder votre progression pour revenir plus tard. Si vous <strong>actualisez ou fermez la page, vos réponses sont effacées</strong>. Prévoyez environ 45 minutes au calme.
+    </div>
+    <div class="card">
+      <h2>Vos informations</h2>
+      <p class="muted" style="margin-bottom:16px">Elles permettent à votre médecin d'identifier vos réponses.</p>
+      <div class="row2">
+        <div class="field"><label for="nom">Nom</label><input id="nom" autocomplete="family-name" value="${esc(state.id.nom)}"></div>
+        <div class="field"><label for="prenom">Prénom</label><input id="prenom" autocomplete="given-name" value="${esc(state.id.prenom)}"></div>
+      </div>
+      <div class="row2">
+        <div class="field"><label for="naissance">Date de naissance</label><input id="naissance" type="date" value="${esc(state.id.naissance)}"></div>
+        <div class="field"><label for="dateJour">Date du jour</label><input id="dateJour" type="date" value="${esc(state.id.dateJour)}"></div>
+      </div>
+    </div>
+    <button class="btn cta-full" id="start">Commencer</button>
+    <p class="muted center" style="margin-top:14px">4 questionnaires · ${TOTAL} questions · environ 45 minutes</p>
+  </div>`;
+  if(!state.id.dateJour){const t=new Date();state.id.dateJour=t.getFullYear()+'-'+String(t.getMonth()+1).padStart(2,'0')+'-'+String(t.getDate()).padStart(2,'0');document.getElementById('dateJour').value=state.id.dateJour;}
+  ['nom','prenom','naissance','dateJour'].forEach(k=>document.getElementById(k).addEventListener('input',e=>{state.id[k]=e.target.value;}));
+  document.getElementById('start').onclick=()=>{
+    if(!state.id.nom||!state.id.prenom){showBanner('Veuillez indiquer au moins votre nom et votre prénom.');return;}
+    state.view="questionnaire";state.qi=0;render();};
+}
+
+function sidebar(){
+  let items='';
+  Q.forEach((q,i)=>{const a=answered(q.id),done=isComplete(q.id);
+    items+=`<button class="${i===state.qi?'active':''}" data-go="${i}"><span class="sdot" style="background:${q.color}">${i+1}</span>
+      <span class="sinfo"><span class="sn">${esc(q.short)}</span><span class="sp ${done?'done':''}">${done?'✓ complété':a+'/'+q.items.length}</span></span></button>`;});
+  const pct=Math.round(totalAnswered()/TOTAL*100);
+  return `<aside class="side"><div class="ttl">Questionnaires</div><div class="ov">${pct}\u00A0% complété</div><div class="snav">${items}</div></aside>`;
+}
+const CICON='<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 11.5a8.38 8.38 0 0 1-8.5 8.5 8.5 8.5 0 0 1-3.8-.9L3 21l1.9-5.7A8.5 8.5 0 0 1 12.5 3 8.38 8.38 0 0 1 21 11.5Z"/></svg>';
+
+function renderQ(){
+  const q=Q[state.qi]; const ans=state.ans[q.id]; const com=state.comments[q.id];
+  let items='';
+  q.items.forEach((it,i)=>{
+    let opts='';
+    q.opts.forEach((o,oi)=>{const sel=ans[i]===oi?' sel':'';
+      opts+=`<label class="opt${sel}"><input type="radio" name="${q.id}_${i}" value="${oi}"${ans[i]===oi?' checked':''}><span class="dot"></span><span>${esc(o)}</span></label>`;});
+    const has=com[i]&&com[i].trim()?' has':'';
+    items+=`<div class="q" data-i="${i}"><div class="qrow"><div class="qn">${it.n}</div><div class="qx">${esc(it.text)}</div>
+      <button class="cbtn${has}" data-ci="${i}" title="Ajouter un commentaire (facultatif)" aria-label="Commentaire">${CICON}</button></div>
+      <div class="opts">${opts}</div></div>`;
+  });
+  const last=state.qi===Q.length-1;
+  const nextBtn=last?`<button class="btn" id="send">Envoyer mes réponses</button>`:`<button class="btn" id="next">Questionnaire suivant</button>`;
+  app.innerHTML=`<div class="layout">${sidebar()}
+    <section><div class="qhead"><h2>${esc(q.title)}</h2><p class="muted" style="margin:0 0 2px">${esc(q.subtitle)}</p>
+      <div class="insn">${esc(q.instruction)}</div></div>
+      <div class="card" id="qlist">${items}</div>
+      <div class="actions">${nextBtn}</div></section></div>`;
+  app.querySelectorAll('.opt input').forEach(inp=>inp.addEventListener('change',e=>{
+    const cell=e.target.closest('.q');const i=+cell.dataset.i;ans[i]=+e.target.value;
+    cell.querySelectorAll('.opt').forEach(o=>o.classList.remove('sel'));
+    e.target.closest('.opt').classList.add('sel');cell.classList.remove('miss');refreshSidebar();}));
+  app.querySelectorAll('.cbtn').forEach(b=>b.onclick=()=>openComment(state.qi,+b.dataset.ci,b));
+  app.querySelectorAll('.snav button').forEach(b=>b.onclick=()=>{state.qi=+b.dataset.go;render();});
+  if(last)document.getElementById('send').onclick=trySend;
+  else document.getElementById('next').onclick=()=>{state.qi++;render();};
+}
+function refreshSidebar(){const old=app.querySelector('.side');if(!old)return;
+  const t=document.createElement('div');t.innerHTML=sidebar();old.replaceWith(t.firstElementChild);
+  app.querySelectorAll('.snav button').forEach(b=>b.onclick=()=>{state.qi=+b.dataset.go;render();});}
+
+/* ---- comment popover ---- */
+let cBack,cPop,cBtn;
+function openComment(qi,i,btn){
+  closeComment();cBtn=btn;const qid=Q[qi].id;
+  cBack=document.createElement('div');cBack.className='cback';cBack.onclick=closeComment;
+  cPop=document.createElement('div');cPop.className='cpop';
+  cPop.innerHTML=`<div class="ch">Commentaire facultatif — question n°${Q[qi].items[i].n}</div>
+    <textarea id="cta" placeholder="Si vous souhaitez préciser quelque chose…"></textarea>
+    <div class="cf"><button id="cclose">Fermer</button></div>`;
+  document.body.appendChild(cBack);document.body.appendChild(cPop);
+  const ta=cPop.querySelector('#cta');ta.value=state.comments[qid][i]||'';
+  ta.addEventListener('input',()=>{state.comments[qid][i]=ta.value;
+    if(ta.value.trim())cBtn.classList.add('has');else cBtn.classList.remove('has');});
+  cPop.querySelector('#cclose').onclick=closeComment;
+  positionPop(btn);ta.focus();
+}
+function positionPop(btn){
+  if(window.innerWidth<=620)return; // CSS handles bottom sheet
+  const r=btn.getBoundingClientRect();const w=320;
+  let left=r.right-w; if(left<8)left=8;
+  let top=r.bottom+8; const h=cPop.offsetHeight||190;
+  if(top+h>window.innerHeight-8)top=Math.max(8,r.top-h-8);
+  cPop.style.left=left+'px';cPop.style.top=top+'px';
+}
+function closeComment(){if(cPop){cPop.remove();cPop=null;}if(cBack){cBack.remove();cBack=null;}cBtn=null;}
+
+/* ---- send ---- */
+function incompleteInfo(){
+  const list=Q.map(q=>({short:q.short,qi:Q.indexOf(q),nums:[]}));
+  Q.forEach((q,qi)=>{state.ans[q.id].forEach((v,i)=>{if(v===null)list[qi].nums.push(q.items[i].n);});});
+  const withMiss=list.filter(x=>x.nums.length);
+  const total=withMiss.reduce((s,x)=>s+x.nums.length,0);
+  return {withMiss,total};
+}
+function trySend(){
+  const {withMiss,total}=incompleteInfo();
+  if(total===0)return doSend();
+  showModal(withMiss,total);
+}
+function showModal(withMiss,total){
+  const back=document.createElement('div');back.className='modal-back';
+  back.innerHTML=`<div class="modal" role="dialog" aria-modal="true">
+    <h2>Réponses incomplètes</h2>
+    <p>Attention, vous n'avez pas répondu à toutes les questions (${total} sans réponse). Vous pouvez revenir les compléter, ou envoyer vos réponses telles quelles.</p>
+    <div class="mf"><button class="btn ghost" id="msee">Voir les questions incomplètes</button><button class="btn" id="msend">Envoyer quand même</button></div></div>`;
+  document.body.appendChild(back);
+  back.querySelector('#msend').onclick=()=>{back.remove();doSend();};
+  back.querySelector('#msee').onclick=()=>{
+    back.remove();
+    const first=withMiss[0];state.qi=first.qi;render();
+    const ans=state.ans[Q[first.qi].id];
+    ans.forEach((v,i)=>{if(v===null){const c=app.querySelector('.q[data-i="'+i+'"]');if(c)c.classList.add('miss');}});
+    showBanner('Questions sans réponse — surlignées ci-dessous : '+withMiss.map(x=>x.short+' (n° '+x.nums.join(', ')+')').join(' · '));
+    const f=app.querySelector('.q.miss');if(f)f.scrollIntoView({behavior:'smooth',block:'center'});
+  };
+  back.addEventListener('click',e=>{if(e.target===back)back.remove();});
+}
+function compact(){
+  const a={},c={};
+  Q.forEach(q=>{a[q.id]=state.ans[q.id].map(v=>v===null?'-':String(v)).join('');
+    const o={};state.comments[q.id].forEach((t,i)=>{if(t&&t.trim())o[i]=t.trim();});if(Object.keys(o).length)c[q.id]=o;});
+  return {v:3, ts:new Date().toISOString(), id:state.id, a, c};
+}
+function makeCode(){return 'DPL3:'+btoa(unescape(encodeURIComponent(JSON.stringify(compact()))));}
+function safeName(){return (state.id.nom+'_'+state.id.prenom).replace(/[^A-Za-z0-9_\-]/g,'').slice(0,40)||'patient';}
+function doSend(){
+  state._sending=true;
+  const code=makeCode();state._code=code;
+  const subject=encodeURIComponent('Auto-questionnaires DPL — '+state.id.nom+' '+state.id.prenom);
+  const body=encodeURIComponent('Bonjour,\n\nVoici mes réponses aux questionnaires. Merci de conserver le code ci-dessous tel quel :\n\n'+code+'\n\nCordialement,\n'+state.id.prenom+' '+state.id.nom);
+  window.location.href='mailto:UMAA@ch-valvert.fr?subject='+subject+'&body='+body;
+  state.view="thanks";render();
+}
+function renderThanks(){
+  const code=state._code||makeCode();
+  app.innerHTML=`<div class="wrap center">
+    <div class="bigcheck"><svg viewBox="0 0 24 24" fill="none" stroke="#5e9580" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg></div>
+    <h1>Merci, c'est terminé.</h1>
+    <p class="lede">Vos réponses vont être transmises à l'équipe des Makaras, qui les analysera dans le cadre de votre évaluation.</p>
+    <div class="card" style="text-align:left">
+      <h2>Dernière étape</h2>
+      <p>Un e-mail pré-rempli devrait s'être ouvert dans votre messagerie : <strong>il vous suffit de l'envoyer</strong> pour que vos réponses nous parviennent.</p>
+      <p class="muted">Votre messagerie ne s'est pas ouverte ? Utilisez l'une de ces options, puis envoyez le tout à <a href="mailto:UMAA@ch-valvert.fr">UMAA@ch-valvert.fr</a> :</p>
+      <div style="display:flex;gap:12px;flex-wrap:wrap;margin:14px 0">
+        <button class="btn" id="dl">Télécharger le fichier</button><button class="btn ghost" id="cp">Copier le code</button></div>
+      <textarea class="code" id="codebox" readonly>${code}</textarea></div>
+    <p class="muted">Vous pouvez maintenant fermer cette page.</p></div>`;
+  document.getElementById('dl').onclick=()=>{const b=new Blob([code],{type:'text/plain'});const u=URL.createObjectURL(b);const a=document.createElement('a');a.href=u;a.download='DPL_'+safeName()+'_'+state.id.dateJour+'.txt';a.click();URL.revokeObjectURL(u);};
+  document.getElementById('cp').onclick=()=>{const t=document.getElementById('codebox');t.select();try{navigator.clipboard.writeText(code);}catch(e){document.execCommand('copy');}document.getElementById('cp').textContent='Code copié ✓';};
+}
+function showBanner(msg){const host=app.querySelector('section')||app.firstElementChild;let b=document.getElementById('banner');
+  if(!b){b=document.createElement('div');b.id='banner';b.className='banner';host.prepend(b);}b.textContent=msg;window.scrollTo(0,0);}
+render();
+</script>
+</body></html>
